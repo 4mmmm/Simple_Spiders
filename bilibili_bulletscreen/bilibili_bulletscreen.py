@@ -17,7 +17,7 @@ def get_bulletscreen(origin_url):
     }
     
     response=requests.get(origin_url,headers=headers)
-    cid = re.search(r'cid=(\d+)&aid', response.text)#用正则将有效信息分离出来
+    cid = re.findall(r'cid=(\d+)&aid', response.text)[0]#用正则将有效信息分离出来
     result_url='https://comment.bilibili.com/'+cid+'.xml'
     response=requests.get(result_url,headers=headers)
     

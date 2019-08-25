@@ -1,20 +1,18 @@
 import jieba
 import matplotlib.pyplot as plt
-import numpy as np
+from imageio import imread
 
 from PIL import Image
 from wordcloud import ImageColorGenerator, WordCloud
 
 def data_analyze(file_path):
-    background=np.array(Image.open('background.jpg'))
+    background=imread('background.png')
     text = open(file_path,'r',encoding='UTF-8').read()
     result_text=jieba_text(text)
 
     wc=WordCloud(
     background_color="white",
-    max_words=1800,
     mask=background,#设置图片的背景
-    max_font_size=100,
     font_path='C:/Windows/Fonts/simkai.ttf'#用系统自带的中文，wordcloud默认不识别中文
     ).generate(result_text)#初始化词云图片的一些参数
 
